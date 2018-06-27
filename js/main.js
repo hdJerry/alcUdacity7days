@@ -1,0 +1,2 @@
+"use stricks";
+$('#toaster').hide();

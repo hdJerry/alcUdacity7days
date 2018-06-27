@@ -1,0 +1,37 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+#converterMain{
+  width: 100%;
+  margin:10px auto;
+}
+#CURR_valDIV{
+  height: 100px;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+.bgF{
+  background-image: url(../img/tenor.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+#converterDiv{
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+#toaster{
+  position: absolute!important;
+  bottom: 100px!important;
+  left: 100px!important;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  background-color: grey;
+  padding:10px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+}

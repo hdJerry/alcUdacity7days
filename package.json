@@ -1,0 +1,33 @@
+{
+  "name": "alc7days",
+  "version": "1.0.0",
+  "description": "currency convertion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdJerry/alc7days.git"
+  },
+  "keywords": [
+    "currency"
+  ],
+  "author": "HD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hdJerry/alc7days/issues"
+  },
+  "homepage": "https://github.com/hdJerry/alc7days#readme",
+  "dependencies": {
+    "browserify": "^16.2.2",
+    "closest": "0.0.1",
+    "es6-import": "^1.6.4",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "idb": "^2.1.3",
+    "lodash": "^4.17.10",
+    "simple-transition": "^1.0.0"
+  }
+}
