@@ -5,7 +5,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
   toCurrency = encodeURIComponent(toCurrency);
   let query = fromCurrency + '_' + toCurrency;
 
-  let url = 'https://free.currencyconverterapi.com/api/v5/convert?q='+ query;
+  let url = 'https://free.currencyconverterapi.com/api/v5/convert?q='+ query+'&compact=y';
 
       let data = {};
 
@@ -14,14 +14,15 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
         type : 'get',
         data : data,
         success : (res) =>{
-          console.log(res.results[query]);
-          let val = res.results[query].val;
+          console.log(res[query]);
+          // console.log(res.results[query]);
+          let val = res[query].val;
           let total = val * amount;
           if(total != null || total != undefined || total != 0){
             $("#CURR_valDIV").removeClass('bgF');
+            cb(null, Math.round(total * 100) / 100);
 
           }
-              cb(null, Math.round(total * 100) / 100);
 
         },
         error : (err) =>{

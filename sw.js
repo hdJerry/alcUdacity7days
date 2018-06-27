@@ -34,6 +34,7 @@ self.addEventListener('activate', (event) =>{
 });
 
 self.addEventListener('fetch', (event) => {
+  var requestUrl = new URL(event.request.url);
   event.respondWith(
     caches.match(event.request)
     .then((response) =>{
@@ -56,7 +57,7 @@ function fetchAndCache(url) {
     });
   })
   .catch((error) =>{
-    // console.log('Request failed:', error);
+    console.log('Request failed:', error);
     // You could return a custom offline 404 page here
 
   });
