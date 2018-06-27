@@ -14,8 +14,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
         type : 'get',
         data : data,
         success : (res) =>{
-          console.log(res[query]);
-          // console.log(res.results[query]);
           let val = res[query].val;
           let total = val * amount;
           if(total != null || total != undefined || total != 0){

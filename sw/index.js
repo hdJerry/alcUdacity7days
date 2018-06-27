@@ -11,13 +11,11 @@ if ('serviceWorker' in navigator) {
     }
 
     if (reg.waiting) {
-      console.log(reg.waiting);
       updateReady(reg.waiting);
       return;
     }
 
     if (reg.installing) {
-      console.log(reg.installing);
       trackInstalling(reg.installing);
       return;
     }
@@ -57,7 +55,7 @@ if ('serviceWorker' in navigator) {
       $('#dis').on('click',() =>{
         $("#toaster").hide("slow");
       });
-      // alert('IDETY lol');
+
 
     };
 }
