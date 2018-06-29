@@ -59,7 +59,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           let val = res[query].val;
           let total = val * amount;
-          console.log(total);
+ 
           if(total != null || total != undefined || total != 0){
             $("#CURR_valDIV").removeClass('bgF');
             let totRound = Math.round(total * 100) / 100;
