@@ -1,6 +1,10 @@
 "use stricks";
 let db;
 
+    /************************************
+    Function to create db in the IndexedDB
+    using ForerunnerDB.
+    *************************************/
 
 function init_db(){
 
@@ -12,8 +16,9 @@ function init_db(){
             primaryKey : 'CURRENCY'
         });
 
-         db_cur.load();
+        console.log(db_cur.find());
 
-
+        db_cur.load();
+        
 }
 init_db();

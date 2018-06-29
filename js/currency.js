@@ -8,7 +8,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
   let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=y`;
 
-  let myQuery =` ${fromCurrency} to ${toCurrency}`;
+  let myQuery =`${fromCurrency} to ${toCurrency}`;
 
       let data = {};
 
@@ -24,7 +24,13 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           db_cur.insert(currency);
           db_cur.save();
-
+          
+           /******************************************************
+           All convertions are done and saved to the IndexedDB
+           provided user is online,
+           and the list of currencies that can be converted offline
+           is displayed to
+           *******************************************************/
 
           let list = document.querySelector('#OfflineList');
           $('#OfflineList').empty();
@@ -59,9 +65,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
             }
 
-
-
-
           let val = res[query].val;
           let total = val * amount;
           console.log(total);
@@ -82,8 +85,18 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
         },
         error : (err) =>{
 
-          let findcurrencies = db.collection('converted').find()[0];
-          if(findcurrencies == 'undefined' || findcurrencies == undefined){
+
+          let findcurrencies = db.collection('converted').find();
+          /*****************************************************************
+          Initially checks if any transaction has been save in the IndexedDB
+          if Not then Displays unable to convert
+
+          if there exist a transaction then is convert it
+
+          on convertion there will be a list of available currencies that can
+          be converted
+          *****************************************************************/
+          if(findcurrencies.length < 1 ){
             $("#CURR_valDIV").text('Unable to convert please check Network connection');
 
           }else{
@@ -121,8 +134,8 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           }
           let result;
           for(let r = 0;r<=findcurrencies.length;r++){
-            for(let x in findcurrencies[r]){
-              if(x == myQuery){
+            for(let f in findcurrencies[r]){
+              if(f == myQuery){
                 result = findcurrencies[r][myQuery] * amount;
               }
             }
@@ -141,9 +154,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           }
 
-
-
-
         }
 
       });
@@ -155,8 +165,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
       Convert currency Button Trigger
 *****************************************/
  $("#getAmount").on('click',()=>{
-
-
 
 
    $("#CURR_valDIV").addClass('bgF');
@@ -174,7 +182,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
    convertCurrency(initVal, fromValue, toValue, (err, amount) => {
 
-     $("#CURR_valDIV").text(initVal+" "+fromValue+" = "+amount+" "+ toValue);
+     $("#CURR_valDIV").text(`${initVal} ${fromValue} = ${amount} ${toValue}`);
    });
 
  });
