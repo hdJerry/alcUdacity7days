@@ -27,10 +27,12 @@
 <div class="col-md-6" id="converterDiv">
   <div class="row form-group" id="online">
     <div class="col-md-3">
+      <label for="init_Val">Amount</label>
       <input type="text" value="1" class="form-control" placeholder="Enter amount" id="init_Val">
 
     </div>
     <div class="col-md-2">
+      <label for="CURR_FR">From</label>
       <select id="CURR_FR" class="form-control">
 
         <option value="AED">AED</option>
@@ -348,9 +350,10 @@
       </select>
     </div>
     <div class="col-md-1" style="text-align: center;">
-      <span class="postfix">to</span>
+      <!-- <span class="postfix">to</span> -->
     </div>
     <div class="col-md-2 ">
+      <label for="CURR_TO">To</label>
       <select id="CURR_TO" class="form-control">
 
         <option value="AED">AED</option>
@@ -666,7 +669,7 @@
         <option value="ZMW">ZMW</option>
 
       </select>
-    </div>
+    </div><br/>
 
     <div class="col-md-3">
     <button id="getAmount" class="btn btn-primary postfix">Convert</button>
