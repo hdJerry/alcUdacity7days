@@ -93,7 +93,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           console.log(result);
 
           if(isNaN(result)){
-            $("#CURR_valDIV").text(" Cant convert "+fromCurrency+" to "+ toCurrency);
+            $("#CURR_valDIV").text(" Cant convert "+fromCurrency+" to "+ toCurrency+" ofline now");
           }else{
             $("#CURR_valDIV").removeClass('bgF');
             $("#CURR_valDIV").text(amount+" "+fromCurrency+" = "+result+" "+ toCurrency);
