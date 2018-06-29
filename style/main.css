@@ -43,7 +43,7 @@ body{
   height: 300px;
   overflow: hidden;
   box-shadow: 0 0 0 3px #ccc;
-
+  margin: 10px;
 }
 #listFlow{
   overflow-y: auto;
