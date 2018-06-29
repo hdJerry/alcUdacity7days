@@ -17,20 +17,20 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
         type : 'get',
         data : data,
         success : (res) =>{
-          console.log(res[query]);
+        
 
 
           currency[myQuery] = res[query].val;
 
           db_cur.insert(currency);
           db_cur.save();
-        
+
 
           let list = document.querySelector('#OfflineList');
           $('#OfflineList').empty();
 
           let findcurrencies = db.collection('converted').find()[0];
-          console.log(findcurrencies);
+
 
             let interval = setInterval(myTimer,1000);
 
@@ -87,7 +87,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             $('#OfflineList').empty();
 
             let findcurrencies = db.collection('converted').find()[0];
-            console.log(findcurrencies);
 
               let interval = setInterval(myTimer,1000);
 

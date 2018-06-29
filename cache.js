@@ -13,7 +13,7 @@ self.addEventListener('install', (event) => {
           'js/bootstrap.min.js',
           'js/jquery-3.1.0.min.js',
           'js/currency.js',
-          'sw/index.js',
+          'js/main.js',
           'js/fdb-all.min.js',
           'img/tenor.gif'
         ]);
@@ -40,7 +40,7 @@ self.addEventListener('activate', (event) =>{
 });
 
 self.addEventListener('fetch', (event) => {
-  console.log(event.request);
+  // console.log(event.request);
   var requestUrl = new URL(event.request.url);
   event.respondWith(
     caches.match(event.request)
