@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Currency</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/forerunnerdb/2.0.22/fdb-all.min.js"></script> -->
+    <script type="application/javascript" src="js/fdb-all.min.js"></script>
+
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/bootstrap.min.css">
 
@@ -11,8 +14,18 @@
   <body>
 
 <div class="row" id="converterMain">
-<div class="col-md-8" id="converterDiv">
-  <div class="row form-group">
+  <div class="col-md-4" id="whenOffline">
+    <h4>LIST OF CURRENCIES YOU WILL BE ABLE TO CONVERT WHEN OFFLINE</h4>
+    <i>This is based of what you checked of resent</i>
+    <div class="" id="listFlow">
+      <ul id="OfflineList">
+
+      </ul>
+    </div>
+  </div>
+
+<div class="col-md-6" id="converterDiv">
+  <div class="row form-group" id="online">
     <div class="col-md-3">
       <input type="text" value="1" class="form-control" placeholder="Enter amount" id="init_Val">
 
@@ -218,7 +231,7 @@
 
         <option value="NAD">NAD</option>
 
-        <option value="NGN">NGN</option>
+        <option value="NGN" selected="">NGN</option>
 
         <option value="NIO">NIO</option>
 
@@ -302,7 +315,7 @@
 
         <option value="UGX">UGX</option>
 
-        <option value="USD" selected="">USD</option>
+        <option value="USD" >USD</option>
 
         <option value="UYU">UYU</option>
 
@@ -432,7 +445,7 @@
 
         <option value="FKP">FKP</option>
 
-        <option value="GBP">GBP</option>
+        <option value="GBP" selected="">GBP</option>
 
         <option value="GEL">GEL</option>
 
@@ -556,7 +569,7 @@
 
         <option value="PGK">PGK</option>
 
-        <option value="PHP" selected="">PHP</option>
+        <option value="PHP" >PHP</option>
 
         <option value="PKR">PKR</option>
 
@@ -622,7 +635,7 @@
 
         <option value="UGX">UGX</option>
 
-        <option value="USD">USD</option>
+        <option value="USD" >USD</option>
 
         <option value="UYU">UYU</option>
 
@@ -660,6 +673,7 @@
     </div>
 
   </div>
+
 
 <div class="row" style="margin:auto;width:50%;padding:5px;">
   <div class="col-md-12 " id="CURR_valDIV">

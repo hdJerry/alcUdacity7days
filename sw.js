@@ -8,15 +8,21 @@ self.addEventListener('install', (event) => {
           'index.html',
           'style/main.css',
           'style/bootstrap.min.css',
+          'style/bootstrap.min.css.map',
+          'style/bootstrap-theme.css',
           'js/bootstrap.min.js',
           'js/jquery-3.1.0.min.js',
           'js/currency.js',
+          'js/main.js',
+          'js/fdb-all.min.js',
           'img/tenor.gif'
         ]);
     })
   );
 
 });
+
+
 
 
 self.addEventListener('activate', (event) =>{
@@ -34,6 +40,7 @@ self.addEventListener('activate', (event) =>{
 });
 
 self.addEventListener('fetch', (event) => {
+  console.log(event.request);
   var requestUrl = new URL(event.request.url);
   event.respondWith(
     caches.match(event.request)
