@@ -91,14 +91,17 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             let list = document.querySelector('#OfflineList');
             $('#OfflineList').empty();
 
-            let findcurrencies = db.collection('converted').find()[0];
+            let findcurrencies = db.collection('converted').find();
+
+
+              for(let i=0; i<=findcurrencies.length;i++){
 
               let interval = setInterval(myTimer,1000);
 
               const genIterator = getcurrencies();
               function* getcurrencies(){
 
-              for(let x in findcurrencies){
+              for(let x in findcurrencies[i]){
                 if(x != 'CURRENCY'){
                   let li = document.createElement('li');
                   li.innerHTML = x;
@@ -115,7 +118,16 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
             }
 
-          let result = findcurrencies[myQuery] * amount;
+          }
+          let result;
+          for(let r = 0;r<=findcurrencies.length;r++){
+            for(let x in findcurrencies[r]){
+              if(x == myQuery){
+                result = findcurrencies[r][myQuery] * amount;
+              }
+            }
+          }
+
           console.log(result);
 
           if(isNaN(result)){
