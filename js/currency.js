@@ -4,11 +4,11 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
   fromCurrency = encodeURIComponent(fromCurrency);
   toCurrency = encodeURIComponent(toCurrency);
-  let query = fromCurrency + '_' + toCurrency;
+  let query = `${fromCurrency}_${toCurrency}`;
 
-  let url = 'https://free.currencyconverterapi.com/api/v5/convert?q='+ query+'&compact=y';
+  let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=y`;
 
-  let myQuery = fromCurrency + ' to ' + toCurrency;
+  let myQuery =` ${fromCurrency} to ${toCurrency}`;
 
       let data = {};
 
@@ -131,10 +131,10 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           console.log(result);
 
           if(isNaN(result)){
-            $("#CURR_valDIV").text(" Cant convert "+fromCurrency+" to "+ toCurrency);
+            $("#CURR_valDIV").text(`Cant convert ${fromCurrency }to ${toCurrency}`);
           }else{
             $("#CURR_valDIV").removeClass('bgF');
-            $("#CURR_valDIV").text(amount+" "+fromCurrency+" = "+result+" "+ toCurrency);
+            $("#CURR_valDIV").text(`${amount}  ${fromCurrency} = ${result} ${toCurrency}`);
           }
 
 
