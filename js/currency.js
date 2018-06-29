@@ -1,7 +1,5 @@
 let currency = {};
 
-
-
 function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
   fromCurrency = encodeURIComponent(fromCurrency);
@@ -24,25 +22,53 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           currency[myQuery] = res[query].val;
 
-
-
-
-         console.log(currency);
           db_cur.insert(currency);
           db_cur.save();
-          // db_cur.load();
+        
 
-        console.group('currencies');
-        console.log(db_cur.find());
-        console.groupEnd();
-          // console.log(res.results[query]);
+          let list = document.querySelector('#OfflineList');
+          $('#OfflineList').empty();
+
+          let findcurrencies = db.collection('converted').find()[0];
+          console.log(findcurrencies);
+
+            let interval = setInterval(myTimer,1000);
+
+            const genIterator = getcurrencies();
+            function* getcurrencies(){
+
+            for(let x in findcurrencies){
+              if(x != 'CURRENCY'){
+                let li = document.createElement('li');
+                li.innerHTML = x;
+                list.appendChild(li);
+              }
+
+              yield;
+            }
+
+          }
+
+
+          function myTimer(){
+
+            genIterator.next();
+
+          }
+
+
           let val = res[query].val;
           let total = val * amount;
           console.log(total);
           if(total != null || total != undefined || total != 0){
             $("#CURR_valDIV").removeClass('bgF');
-            // cb(null, Math.round(total * 100) / 100);
-            cb(null, total.toFixed(4));
+            let totRound = Math.round(total * 100) / 100;
+            if(totRound == 0){
+              cb(null, total.toFixed(4));
+            }else{
+              cb(null,totRound);
+
+            }
 
 
           }
@@ -50,10 +76,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
         },
         error : (err) =>{
-          console.log(err);
-
-
-          let list = document.querySelector('#OfflineList');
 
           let findcurrencies = db.collection('converted').find()[0];
           if(findcurrencies == 'undefined' || findcurrencies == undefined){
@@ -61,8 +83,12 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           }else{
 
+            let list = document.querySelector('#OfflineList');
+            $('#OfflineList').empty();
 
-            if( ($("ul#OfflineList").has("li").length === 0) ) {
+            let findcurrencies = db.collection('converted').find()[0];
+            console.log(findcurrencies);
+
               let interval = setInterval(myTimer,1000);
 
               const genIterator = getcurrencies();
@@ -79,21 +105,17 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
               }
 
             }
-
-
             function myTimer(){
 
               genIterator.next();
 
             }
 
-          }
-
           let result = findcurrencies[myQuery] * amount;
           console.log(result);
 
           if(isNaN(result)){
-            $("#CURR_valDIV").text(" Cant convert "+fromCurrency+" to "+ toCurrency+" ofline now");
+            $("#CURR_valDIV").text(" Cant convert "+fromCurrency+" to "+ toCurrency);
           }else{
             $("#CURR_valDIV").removeClass('bgF');
             $("#CURR_valDIV").text(amount+" "+fromCurrency+" = "+result+" "+ toCurrency);

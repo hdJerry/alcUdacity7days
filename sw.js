@@ -1,4 +1,4 @@
-var CACHE_NAME = 'static-caches';
+var CACHE_NAME = 'static-cache';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -13,7 +13,7 @@ self.addEventListener('install', (event) => {
           'js/bootstrap.min.js',
           'js/jquery-3.1.0.min.js',
           'js/currency.js',
-          'js/main.js',
+          'sw/index.js',
           'js/fdb-all.min.js',
           'img/tenor.gif'
         ]);

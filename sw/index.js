@@ -3,6 +3,7 @@
 // import * from 'idb';
 $('#toaster').hide();
 
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
   .then(function(reg) {
@@ -47,6 +48,7 @@ if ('serviceWorker' in navigator) {
   };
 
   updateReady = (worker) =>{
+    
       $("#toaster").show("slow");
 
       $('#ref').on('click',() =>{
