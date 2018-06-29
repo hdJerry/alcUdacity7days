@@ -17,7 +17,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
         type : 'get',
         data : data,
         success : (res) =>{
-        
+
 
 
           currency[myQuery] = res[query].val;
@@ -29,37 +29,42 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           let list = document.querySelector('#OfflineList');
           $('#OfflineList').empty();
 
-          let findcurrencies = db.collection('converted').find()[0];
+          let findcurrencies = db.collection('converted').find();
 
 
-            let interval = setInterval(myTimer,1000);
+            for(let i=0; i<=findcurrencies.length;i++){
+              let interval = setInterval(myTimer,1000);
 
-            const genIterator = getcurrencies();
-            function* getcurrencies(){
+              const genIterator = getcurrencies();
+              function* getcurrencies(){
 
-            for(let x in findcurrencies){
-              if(x != 'CURRENCY'){
-                let li = document.createElement('li');
-                li.innerHTML = x;
-                list.appendChild(li);
+              for(let x in findcurrencies[i]){
+                if(x != 'CURRENCY'){
+                  let li = document.createElement('li');
+                  li.innerHTML = x;
+                  list.appendChild(li);
+                }
+
+                yield;
               }
 
-              yield;
             }
 
-          }
+
+            function myTimer(){
+
+              genIterator.next();
+
+            }
+
+            }
 
 
-          function myTimer(){
-
-            genIterator.next();
-
-          }
 
 
           let val = res[query].val;
           let total = val * amount;
- 
+          console.log(total);
           if(total != null || total != undefined || total != 0){
             $("#CURR_valDIV").removeClass('bgF');
             let totRound = Math.round(total * 100) / 100;
