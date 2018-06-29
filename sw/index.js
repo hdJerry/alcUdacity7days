@@ -5,7 +5,7 @@ $('#toaster').hide();
 
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
+  navigator.serviceWorker.register('cache.js')
   .then(function(reg) {
     if (!navigator.serviceWorker.controller) {
       return;
