@@ -1,10 +1,13 @@
 body{
   margin: 10px;
   padding: 10px;
+
 }
 #converterMain{
   width: 100%;
   margin:10px auto;
+  overflow: hidden;
+
 }
 #CURR_valDIV{
   height: 100px;
@@ -37,16 +40,30 @@ body{
   text-align: center;
 }
 #OfflineList {
-  list-style-image: url(../img/listIcon.png);
+  margin: 10px;
+  list-style-image: url(../img/button.png);
+  text-indent: 7px;
+  /* text-align: center; */
 }
+
+#OfflineList li{
+  border-top: 1px solid #ccc;
+  padding: 5px;
+}
+
 #whenOffline{
   height: 300px;
-  overflow: hidden;
   box-shadow: 0 0 0 3px #ccc;
   margin: 10px;
 }
 #listFlow{
   overflow-y: auto;
-  width: 100%;
+  /* width: 27%; */
   height: 70%;
+  scroll-behavior: smooth;
+  scrollbar:
+}
+
+::-webkit-scrollbar{
+  display: none;
 }
