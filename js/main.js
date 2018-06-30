@@ -16,9 +16,7 @@ function init_db(){
             primaryKey : 'CURRENCY'
         });
 
-        console.log(db_cur.find());
-
         db_cur.load();
-        
+
 }
 init_db();

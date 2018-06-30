@@ -24,13 +24,17 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           db_cur.insert(currency);
           db_cur.save();
-          
+
            /******************************************************
            All convertions are done and saved to the IndexedDB
            provided user is online,
            and the list of currencies that can be converted offline
-           is displayed to
+           is displayed to.
+           Set() was used so that the values gotten from IndexedDB
+           wont have any replication.
            *******************************************************/
+
+          let enlist = new Set();
 
           let list = document.querySelector('#OfflineList');
           $('#OfflineList').empty();
@@ -39,35 +43,43 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
 
             for(let i=0; i<=findcurrencies.length;i++){
-              let interval = setInterval(myTimer,1000);
 
-              const genIterator = getcurrencies();
-              function* getcurrencies(){
+            for(let x in findcurrencies[i]){
+              if(x != 'CURRENCY'){
 
-              for(let x in findcurrencies[i]){
-                if(x != 'CURRENCY'){
-                  let li = document.createElement('li');
-                  li.innerHTML = x;
-                  list.appendChild(li);
-                }
+               enlist.add(x);
 
-                yield;
               }
 
             }
 
+        }
 
-            function myTimer(){
+        let interval = setInterval(myTimer,1000);
+        const genIterator = getcurrencies();
 
-              genIterator.next();
+          function* getcurrencies(){
+            for(let g of enlist){
 
-            }
+           let li = document.createElement('li');
+            li.innerHTML = g;
+            list.appendChild(li);
+              yield;
 
-            }
+          }
+
+        }
+
+        function myTimer(){
+
+          genIterator.next();
+
+        }
+
 
           let val = res[query].val;
           let total = val * amount;
-          console.log(total);
+
           if(total != null || total != undefined || total != 0){
             $("#CURR_valDIV").removeClass('bgF');
             let totRound = Math.round(total * 100) / 100;
@@ -95,11 +107,15 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           on convertion there will be a list of available currencies that can
           be converted
+          Set() was used so that the values gotten from IndexedDB
+          wont have any replication.
           *****************************************************************/
           if(findcurrencies.length < 1 ){
             $("#CURR_valDIV").text('Unable to convert please check Network connection');
 
           }else{
+
+            let enlist = new Set();
 
             let list = document.querySelector('#OfflineList');
             $('#OfflineList').empty();
@@ -109,29 +125,40 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
               for(let i=0; i<=findcurrencies.length;i++){
 
-              let interval = setInterval(myTimer,1000);
-
-              const genIterator = getcurrencies();
-              function* getcurrencies(){
-
               for(let x in findcurrencies[i]){
                 if(x != 'CURRENCY'){
-                  let li = document.createElement('li');
-                  li.innerHTML = x;
-                  list.appendChild(li);
+
+                 enlist.add(x);
+
                 }
 
-                yield;
               }
 
-            }
-            function myTimer(){
+          }
 
-              genIterator.next();
+          let interval = setInterval(myTimer,1000);
+          const genIterator = getcurrencies();
+
+            function* getcurrencies(){
+              for(let g of enlist){
+
+             let li = document.createElement('li');
+              li.innerHTML = g;
+              list.appendChild(li);
+                yield;
 
             }
 
           }
+
+          function myTimer(){
+
+            genIterator.next();
+
+          }
+
+
+
           let result;
           for(let r = 0;r<=findcurrencies.length;r++){
             for(let f in findcurrencies[r]){
@@ -140,8 +167,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
               }
             }
           }
-
-          console.log(result);
 
           if(isNaN(result)){
             $("#CURR_valDIV").text(`Cant convert ${fromCurrency }to ${toCurrency}`);
