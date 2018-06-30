@@ -1,4 +1,4 @@
-var CACHE_NAME = 'static-cache';
+let CACHE_NAME = 'static-caches';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -41,7 +41,7 @@ self.addEventListener('activate', (event) =>{
 
 self.addEventListener('fetch', (event) => {
   // console.log(event.request);
-  var requestUrl = new URL(event.request.url);
+  let requestUrl = new URL(event.request.url);
   event.respondWith(
     caches.match(event.request)
     .then((response) =>{
