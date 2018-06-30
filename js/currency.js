@@ -54,6 +54,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             }
 
         }
+
         let sNum = 1;
         let interval = setInterval(myTimer,1000);
         const genIterator = getcurrencies();
@@ -86,8 +87,15 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
         }
 
         function myTimer(){
+          if(genIterator.next().done == false){
+            $('#getAmount').prop('disabled',true);
+          }else{
+            $('#getAmount').prop('disabled',false);
 
+          }
           genIterator.next();
+
+
 
         }
 
@@ -97,6 +105,8 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           if(total != null || total != undefined || total != 0){
             $("#overlay").hide();
+
+
             let totRound = Math.round(total * 100) / 100;
             if(totRound == 0){
               cb(null, total.toFixed(4));
@@ -201,6 +211,8 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             $("#CURR_valDIV").text(`Not Available Offline`);
           }else{
             $("#overlay").hide();
+            $('#getAmount').prop('disabled',false);
+
             $("#CURR_valDIV").text(`${result}`);
           }
 
@@ -223,6 +235,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
    $("#overlay").show();
    $("#CURR_valDIV").text('');
+   $('#getAmount').prop('disabled',true);
 
   /******************************************************
               Getting the input values
