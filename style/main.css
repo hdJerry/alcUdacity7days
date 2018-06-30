@@ -1,33 +1,70 @@
 body{
-  margin: 10px;
-  padding: 10px;
-
+  margin: 0;
+  padding: 0;
 }
-#converterMain{
-  width: 100%;
+#left{
+  background-color: #ddd;
+  height: 100vh;
+  padding: 10px;
+}
+#rigth{
+  background-color: #fff;
+  height: 100vh;
+  padding: 15px;
+}
+#rigth p,i{
+  text-align: center;
+}
+#rigth p{
+  font-size: 1.2em;
+  font-weight: bold;
+}
+#rigth i{
+  color: #1b4313;
+}
+#logo{
+  padding: 10px;
+  height: 10%;
+  background-image: url(../img/logo.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  margin: 5px;
+}
+
+#main{
+  width: 50%;
+  padding: 15px;
   margin:10px auto;
-  overflow: hidden;
+  background-color: #fff;
+  border-radius: 10px;
+  z-index: -1;
+}
+#overlay{
+  width: 50%;
+  margin:5px auto;
+  margin-left: 23%;
+  background-color: #fff;
+  opacity: 0.8;
+  z-index: 9999999;
+  height: 50%;
+  position: absolute;
+  background-image: url(../img/tenor.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  border-radius: 10px;
 
 }
 #CURR_valDIV{
-  height: 100px;
+  height: 50px;
   padding: 10px;
   text-align: center;
   font-size: 1.6em;
   font-weight: bold;
-  box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset 0 0 5px #ccc;
 }
-.bgF{
-  background-image: url(../img/tenor.gif);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-#converterDiv{
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 3px 3px 5px 6px #ccc;
-}
+
 #toaster{
   position: absolute!important;
   bottom: 100px!important;
@@ -43,7 +80,6 @@ body{
   margin: 10px;
   list-style-image: url(../img/button.png);
   text-indent: 7px;
-  /* text-align: center; */
 }
 
 #OfflineList li{
@@ -59,7 +95,6 @@ body{
 }
 #listFlow{
   overflow-y: auto;
-  /* width: 27%; */
   height: 70%;
   scroll-behavior: smooth;
   scrollbar:
@@ -67,4 +102,10 @@ body{
 
 ::-webkit-scrollbar{
   display: none;
+}
+
+@media screen and (min-width:320px) and (max-width:700px){
+ #main{
+   width: 100%;
+ }
 }

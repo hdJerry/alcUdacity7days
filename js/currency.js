@@ -1,5 +1,5 @@
 let currency = {};
-
+$("#overlay").hide();
 function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
   fromCurrency = encodeURIComponent(fromCurrency);
@@ -37,7 +37,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           let enlist = new Set();
 
           let list = document.querySelector('#OfflineList');
-          $('#OfflineList').empty();
+          $('.added').empty();
 
           let findcurrencies = db.collection('converted').find();
 
@@ -54,17 +54,32 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             }
 
         }
-
+        let sNum = 1;
         let interval = setInterval(myTimer,1000);
         const genIterator = getcurrencies();
 
           function* getcurrencies(){
             for(let g of enlist){
 
-           let li = document.createElement('li');
-            li.innerHTML = g;
-            list.appendChild(li);
-              yield;
+              let tr = document.createElement('tr');
+              tr.setAttribute('class','added');
+
+              let tdN = document.createElement('td');
+              let txtN = document.createTextNode(sNum);
+              tdN.appendChild(txtN);
+              tr.appendChild(tdN);
+
+              let tdV = document.createElement('td');
+              let txtV = document.createTextNode(g);
+              tdV.appendChild(txtV);
+              tr.appendChild(tdV);
+
+              list.appendChild(tr);
+
+
+              sNum++;
+
+                 yield;
 
           }
 
@@ -81,7 +96,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           let total = val * amount;
 
           if(total != null || total != undefined || total != 0){
-            $("#CURR_valDIV").removeClass('bgF');
+            $("#overlay").hide();
             let totRound = Math.round(total * 100) / 100;
             if(totRound == 0){
               cb(null, total.toFixed(4));
@@ -118,7 +133,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             let enlist = new Set();
 
             let list = document.querySelector('#OfflineList');
-            $('#OfflineList').empty();
+            $('.added').empty();
 
             let findcurrencies = db.collection('converted').find();
 
@@ -135,18 +150,32 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
               }
 
           }
-
+          let sNum = 1;
           let interval = setInterval(myTimer,1000);
           const genIterator = getcurrencies();
 
             function* getcurrencies(){
               for(let g of enlist){
 
-             let li = document.createElement('li');
-              li.innerHTML = g;
-              list.appendChild(li);
-                yield;
+                let tr = document.createElement('tr');
+                tr.setAttribute('class','added');
 
+                let tdN = document.createElement('td');
+                let txtN = document.createTextNode(sNum);
+                tdN.appendChild(txtN);
+                tr.appendChild(tdN);
+
+                let tdV = document.createElement('td');
+                let txtV = document.createTextNode(g);
+                tdV.appendChild(txtV);
+                tr.appendChild(tdV);
+
+                list.appendChild(tr);
+
+
+                sNum++;
+
+                   yield;
             }
 
           }
@@ -169,10 +198,10 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           }
 
           if(isNaN(result)){
-            $("#CURR_valDIV").text(`Cant convert ${fromCurrency }to ${toCurrency}`);
+            $("#CURR_valDIV").text(`Not Available Offline`);
           }else{
-            $("#CURR_valDIV").removeClass('bgF');
-            $("#CURR_valDIV").text(`${amount}  ${fromCurrency} = ${result} ${toCurrency}`);
+            $("#overlay").hide();
+            $("#CURR_valDIV").text(`${result}`);
           }
 
 
@@ -192,7 +221,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
  $("#getAmount").on('click',()=>{
 
 
-   $("#CURR_valDIV").addClass('bgF');
+   $("#overlay").show();
    $("#CURR_valDIV").text('');
 
   /******************************************************
@@ -207,7 +236,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
    convertCurrency(initVal, fromValue, toValue, (err, amount) => {
 
-     $("#CURR_valDIV").text(`${initVal} ${fromValue} = ${amount} ${toValue}`);
+     $("#CURR_valDIV").text(`${amount}`);
    });
 
  });
