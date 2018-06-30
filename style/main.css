@@ -55,6 +55,7 @@ body{
   height: 300px;
   box-shadow: 0 0 0 3px #ccc;
   margin: 10px;
+  padding: 10px;
 }
 #listFlow{
   overflow-y: auto;
