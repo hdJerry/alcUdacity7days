@@ -55,7 +55,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
         }
         let sNum = 1;
-        let interval = setInterval(myTimer,1000);
+        let interval = setInterval(myTimer,100);
         const genIterator = getcurrencies();
 
           function* getcurrencies(){
@@ -151,7 +151,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           }
           let sNum = 1;
-          let interval = setInterval(myTimer,1000);
+          let interval = setInterval(myTimer,100);
           const genIterator = getcurrencies();
 
             function* getcurrencies(){
