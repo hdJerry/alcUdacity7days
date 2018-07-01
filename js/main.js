@@ -10,7 +10,7 @@ $( "#CURR_FR" )
 
     });
     let cls = str.slice(0,2).toLowerCase();
-    $("#flagFR").addClass('flag-icon-'+cls);
+    $("#flagFR").addClass(`flag-icon-${cls}`);
   })
   .trigger( "change" );
 
@@ -24,7 +24,7 @@ $( "#CURR_FR" )
 
       });
       let cl = st.slice(0,2).toLowerCase();
-      $("#flagTO").addClass('flag-icon-'+cl);
+      $("#flagTO").addClass(`flag-icon-${cl}`);
     })
     .trigger( "change" );
 
