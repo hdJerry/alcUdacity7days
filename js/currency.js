@@ -84,18 +84,15 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           }
 
+
         }
 
+
         function myTimer(){
-          if(genIterator.next().done == false){
-            $('#getAmount').prop('disabled',true);
-          }else{
-            $('#getAmount').prop('disabled',false);
-
-          }
           genIterator.next();
-
-
+          if(genIterator.next().done == true){
+            $('#getAmount').prop('disabled',false);
+          }
 
         }
 
@@ -190,9 +187,12 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
           }
 
-          function myTimer(){
 
+          function myTimer(){
             genIterator.next();
+            if(genIterator.next().done == true){
+              $('#getAmount').prop('disabled',false);
+            }
 
           }
 
@@ -211,7 +211,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
             $("#CURR_valDIV").text(`Not Available Offline`);
           }else{
             $("#overlay").hide();
-            $('#getAmount').prop('disabled',false);
 
             $("#CURR_valDIV").text(`${result}`);
           }
