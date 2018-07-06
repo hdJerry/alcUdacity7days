@@ -6,7 +6,7 @@ $( "#CURR_FR" )
     let str = "";
     $( "#CURR_FR option:selected" ).each(function() {
 
-      str += ${$( this ).val()} `;
+      str += `${$( this ).val()} `;
 
     });
     let cls = str.slice(0,2).toLowerCase();
